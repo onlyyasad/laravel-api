@@ -9,6 +9,7 @@ class StudentController extends Controller
 {
     //
     function list(){
-        return Student::all();
+        $students = Student::all();
+        return ['message' => "Success",'students' => $students];
     }
 }
