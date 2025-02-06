@@ -30,7 +30,7 @@ class StudentController extends Controller
 
     function updateStudent(Request $req, $id){
         $student = Student::find($id);
-        
+
         if(!$student){
             return ['message' => 'Student Not Found'];
         }
@@ -41,6 +41,15 @@ class StudentController extends Controller
             return ['message' => 'Student Updated Successfully'];
         }else{
             return ['message' => 'Student Not Updated'];
+        }
+    }
+
+    function deleteStudent($id){
+        $student = Student::destroy($id);
+        if($student){
+            return ['message' => 'Student deleted successfully!'];
+        }else{
+            return ['message' => 'Student not deleted'];
         }
     }
 }
