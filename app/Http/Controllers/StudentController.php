@@ -27,4 +27,20 @@ class StudentController extends Controller
             return ['message' => 'Student Not Added'];
         }
     }
+
+    function updateStudent(Request $req, $id){
+        $student = Student::find($id);
+        
+        if(!$student){
+            return ['message' => 'Student Not Found'];
+        }
+
+        $student->name = $req->name;
+        $student->save();
+        if($student->save()){
+            return ['message' => 'Student Updated Successfully'];
+        }else{
+            return ['message' => 'Student Not Updated'];
+        }
+    }
 }
