@@ -52,4 +52,13 @@ class StudentController extends Controller
             return ['message' => 'Student not deleted'];
         }
     }
+
+    function searchStudent($name){
+        $student = Student::where('name', 'like', "%$name%")->get();
+        if($student){
+            return ["result" => $student];
+        }else{
+            return ["message" => "No student found for the name $name"];
+        }
+    }
 }
