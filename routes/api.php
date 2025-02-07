@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,7 @@ Route::group(['middleware'=>'auth:sanctum'], function(){
     Route::delete('/delete-student/{id}', [StudentController::class, 'deleteStudent']);
     Route::get('/search-student/{name}', [StudentController::class, 'searchStudent']);
 });
+
+Route::apiResource('teachers', TeacherController::class);
 
 // Route::get('/login', [UserAuthController::class, 'login'])->name('login');
