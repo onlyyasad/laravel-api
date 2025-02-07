@@ -15,11 +15,16 @@ Route::get('/test', function(){
     ]);
 });
 
-Route::get('/students', [StudentController::class, 'list']);
-Route::post('/add-student', [StudentController::class, 'addStudent']);
-Route::put('/update-student/{id}', [StudentController::class, 'updateStudent']);
-Route::delete('/delete-student/{id}', [StudentController::class, 'deleteStudent']);
-Route::get('/search-student/{name}', [StudentController::class, 'searchStudent']);
 
 Route::post('/login', [UserAuthController::class, 'login']);
 Route::post('/signup', [UserAuthController::class, 'signup']);
+
+Route::group(['middleware'=>'auth:sanctum'], function(){
+    Route::get('/students', [StudentController::class, 'list']);
+    Route::post('/add-student', [StudentController::class, 'addStudent']);
+    Route::put('/update-student/{id}', [StudentController::class, 'updateStudent']);
+    Route::delete('/delete-student/{id}', [StudentController::class, 'deleteStudent']);
+    Route::get('/search-student/{name}', [StudentController::class, 'searchStudent']);
+});
+
+// Route::get('/login', [UserAuthController::class, 'login'])->name('login');
