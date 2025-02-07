@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TeacherCollection;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,9 @@ class TeacherController extends Controller
 
         // Pagination
         $perPage = $request->input('per_page', 10);
-        return $query->paginate($perPage);
+        $teachers = $query->paginate($perPage);
+
+        return new TeacherCollection($teachers);
     }
 
     /**
